@@ -529,30 +529,30 @@ public class CalculatorController {
 		//boton de Equals
 		calcu.btnEquals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//he probado e todo pero esta es la unica manera de imprimir por pantalla bien el calculo final el resultado
-				String lastNum = calcu.lblResult.getText();
-				if(!calcu.lblResult.getText().equals(".")) arithmetic_operation();
-				calcu.lblResultOld.setText("(" + calcu.lblResultOld.getText() + lastNum +") = " + calcu.lblResult.getText());
 				
-				//Aqui añado 
-				results.add(calcu.lblResultOld.getText());
-				
-				String Username = usuario.getUsername();
-				int x = usuario.checkUserForAddLog(Username);
-				if (x==1) {
-					usuario.addLog(Username, calcu.lblResultOld.getText());
+				if (!calcu.lblResult.getText().equals("")) {
+					String lastNum = calcu.lblResult.getText();
+					if (!calcu.lblResult.getText().equals("."))
+						arithmetic_operation();
+					calcu.lblResultOld
+							.setText("(" + calcu.lblResultOld.getText() + lastNum + ") = " + calcu.lblResult.getText());
+					//Aqui añado 
+					results.add(calcu.lblResultOld.getText());
+					String Username = usuario.getUsername();
+					int x = usuario.checkUserForAddLog(Username);
+					if (x == 1) {
+						usuario.addLog(Username, calcu.lblResultOld.getText());
+					} else if (x == 0) {
+						usuario.addLog(Username, calcu.lblResultOld.getText());
+					} else {
+						System.out.println(
+								"Mirar clase CalculatorController linea 474, fallo de conexion base de datos ?");
+					}
+					calcu.lblResultOld.setText("");
+					num = 0;
+					//definicion donde creo la variable (arriba)
+					checkenter = true;
 				}
-				else if( x== 0) 
-				{
-					usuario.addLog(Username, calcu.lblResultOld.getText());
-				} else {
-					System.out.println("Mirar clase CalculatorController linea 474, fallo de conexion base de datos ?");
-				}
-				calcu.lblResultOld.setText("");
-				num = 0;
-				
-				//definicion donde creo la variable (arriba)
-				checkenter = true;
 			}
 		});
 		
