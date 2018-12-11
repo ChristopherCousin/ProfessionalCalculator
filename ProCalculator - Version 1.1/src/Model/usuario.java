@@ -259,17 +259,8 @@ public class usuario {
 				 try {
 					cn = (PreparedStatement) DataConnection.con.prepareStatement(vSQL, PreparedStatement.RETURN_GENERATED_KEYS);
 					
-					 ResultSet rs = cn.executeQuery(vSQL);
-					 
-					 //si devuelve true con el metodo ( next ) significa que ha encontrado algo
-					 if (rs.next())
-					 {
-					 //ponemos la variable result en 1
+					 int rs = cn.executeUpdate(vSQL);
 					 result = 1;
-					 } else {
-						 //ponemos la variable en 0 para decir que no hemos encontrado usuario.
-						 result = 0;
-					 }
 					
 				} catch (SQLException e1) {
 					

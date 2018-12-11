@@ -1,10 +1,6 @@
 package Controller;
 
-//Necesito importar la libreria de math para hacer calculos como goniometric functions y demas.
-import java.math.*;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 
 import Model.usuario;
@@ -12,10 +8,6 @@ import Model.usuario;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import Utils.FrameDragListener;
 import View.CalculatorView;
 
@@ -592,9 +584,8 @@ public class CalculatorController {
 				} else {
 					calcu.paintButtons(true);
 					x--;
-					//borramos la arrayList para que no se muestre duplicada
-					logs.clear();
-					calcu.list.removeAll();
+					//borramos la arrayList para que no se muestre duplicada y la lista.
+					clearLogs();
 				}
 
 			}
@@ -607,10 +598,12 @@ public class CalculatorController {
 				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					int x = usuario.deleteAllLogs(usuario.getUsername());
 					if(x==1) {
-						JOptionPane.showMessageDialog(null, "Info", "Successfully deleting all Logs", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Successfully deleting all Logs", "Succesfully", JOptionPane.INFORMATION_MESSAGE);
+						updateLogs();
+						calcu.repaint();
 					}
 				} else {
-				    // no option
+					JOptionPane.showMessageDialog(null, "Error", "There's a problem in DataBase manipulation check usuario class.", JOptionPane.INFORMATION_MESSAGE);
 				}
 				
 
@@ -624,6 +617,12 @@ public class CalculatorController {
 		for(int x = 0; x <logs.size() ; x++) {
 			calcu.list.add(logs.get(x));
 		}
+	}
+	
+	void clearLogs() 
+	{
+		logs.clear();
+		calcu.list.removeAll();
 	}
 	//Esta funcion sera para poner el texto más pequeño dependiendo de la longitud del texto, tendra un maximo de 16.
 	void updateSizeTxt() {

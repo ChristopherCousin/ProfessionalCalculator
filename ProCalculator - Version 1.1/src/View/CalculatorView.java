@@ -95,23 +95,6 @@ public class CalculatorView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		lblHistory = new JLabel("Calculations History");
-		lblHistory.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
-		lblHistory.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHistory.setBounds(10, 217, 228, 44);
-		contentPane.add(lblHistory);
-		
-		btnDeleteSelected = new Button("Delete Selected");
-		btnDeleteSelected.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		btnDeleteSelected.setBounds(256, 225, 101, 36);
-		contentPane.add(btnDeleteSelected);
-		
-		btnDeleteALL = new Button("Delete ALL");
-		btnDeleteALL.setForeground(Color.RED);
-		btnDeleteALL.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		btnDeleteALL.setBounds(364, 225, 66, 36);
-		contentPane.add(btnDeleteALL);
 		//Aqui le ponemos la funcion setundecored para quitar la ventana por defecto
 		setUndecorated(true);
 		//Le ponemos opacidad a la ventana.
@@ -125,7 +108,9 @@ public class CalculatorView extends JFrame {
 		{
 			//Borramos al lista del historial
 			contentPane.remove(list);
-			
+			contentPane.remove(lblHistory);
+			contentPane.remove(btnDeleteSelected);
+			contentPane.remove(btnDeleteALL);
 			
 			contentPane.add(btnPi);
 			contentPane.add(btn1);
@@ -186,6 +171,9 @@ public class CalculatorView extends JFrame {
 			
 			//Aqui añadimos la lista!
 			contentPane.add(list);
+			contentPane.add(lblHistory);
+			contentPane.add(btnDeleteSelected);
+			contentPane.add(btnDeleteALL);
 			
 			contentPane.repaint();
 			
@@ -193,6 +181,20 @@ public class CalculatorView extends JFrame {
 	}
 	
 	public void createButtons() {
+		
+		lblHistory = new JLabel("Calculations History");
+		lblHistory.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
+		lblHistory.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHistory.setBounds(10, 217, 228, 44);
+		
+		btnDeleteSelected = new Button("Delete Selected");
+		btnDeleteSelected.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		btnDeleteSelected.setBounds(256, 225, 101, 36);
+		
+		btnDeleteALL = new Button("Delete ALL");
+		btnDeleteALL.setForeground(Color.RED);
+		btnDeleteALL.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		btnDeleteALL.setBounds(364, 225, 66, 36);
 		
 		list = new List();
 		list.setBounds(10, 270, 420, 272);
