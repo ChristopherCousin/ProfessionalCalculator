@@ -609,6 +609,25 @@ public class CalculatorController {
 
 			}
 		});
+		calcu.btnDeleteSelected.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Nos aseguramos que el usuario sabe lo que hace informandole.
+				if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
+				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					int x = usuario.deleteSelectedLog(usuario.getUsername(), calcu.list.getSelectedItem().toString());
+					if(x==1) {
+						JOptionPane.showMessageDialog(null, "Successfully deleting all Logs", "Succesfully", JOptionPane.INFORMATION_MESSAGE);
+						clearLogs();
+						updateLogs();
+						
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Error", "There's a problem in DataBase manipulation check usuario class.", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+		});
         
 	}
 	void updateLogs() 

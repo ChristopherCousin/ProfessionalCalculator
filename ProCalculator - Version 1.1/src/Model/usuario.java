@@ -282,7 +282,7 @@ public class usuario {
 		int result = 0;
 		
 		
-		String vSQL = "DELETE FROM `log` WHERE Username = '" + username + "'";
+		String vSQL = "DELETE FROM `log` WHERE Username = '" + username + "'" + " AND Log = '" + Log + "'";
 		System.out.println(vSQL);
 				 try {
 					cn = (PreparedStatement) DataConnection.con.prepareStatement(vSQL, PreparedStatement.RETURN_GENERATED_KEYS);

@@ -100,7 +100,6 @@ public class CalculatorView extends JFrame {
 		//Le ponemos opacidad a la ventana.
 		setOpacity(0.9f);
 		
-		
 	}
 	public void paintButtons(boolean Paint) 
 	{
@@ -188,12 +187,12 @@ public class CalculatorView extends JFrame {
 		lblHistory.setBounds(10, 217, 228, 44);
 		
 		btnDeleteSelected = new Button("Delete Selected");
-		btnDeleteSelected.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		btnDeleteSelected.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnDeleteSelected.setBounds(256, 225, 101, 36);
 		
 		btnDeleteALL = new Button("Delete ALL");
 		btnDeleteALL.setForeground(Color.RED);
-		btnDeleteALL.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		btnDeleteALL.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnDeleteALL.setBounds(364, 225, 66, 36);
 		
 		list = new List();
@@ -355,7 +354,8 @@ public class CalculatorView extends JFrame {
 
 		
 		btnHistorial = new JButton("");
-		btnHistorial.setBounds(385, 3, 45, 28);
+		btnHistorial.setIcon(new ImageIcon(CalculatorView.class.getResource("/resources/History.png")));
+		btnHistorial.setBounds(385, 11, 45, 36);
 
 		
 		backBtn = new JButton("");
