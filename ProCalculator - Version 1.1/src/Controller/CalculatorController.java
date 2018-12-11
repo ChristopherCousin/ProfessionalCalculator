@@ -414,17 +414,17 @@ public class CalculatorController {
 					arithmetic_operation();
 				}
 				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
-					// pasamos el num a double y cogemos el texto
+					// Pasamos el num a double y cogemos el texto
 					num = Double.parseDouble(calcu.lblResult.getText());
 				}
 				calculation = 2;
 				
-				//pongo true la booleana.
+				//Pongo true la booleana.
 				checkBtn = true;
 			}
 		});
 		
-		// lo mismo pero multiplicando
+		// Lo mismo pero multiplicando
 		calcu.btnMultiplicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updatetxt("multiplicar");
@@ -434,16 +434,17 @@ public class CalculatorController {
 				}
 				
 				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
-					// pasamos el num a double y cogemos el texto
+					// Pasamos el num a double y cogemos el texto
 					num = Double.parseDouble(calcu.lblResult.getText());
 				}
 				calculation = 3;
 				
 				//pongo true la booleana.
 				checkBtn = true;
+				
 			}
 		});
-		//lo mismo pero dividiendo
+		//Lo mismo pero dividiendo
 		calcu.btnDividir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updatetxt("dividir");
@@ -452,7 +453,7 @@ public class CalculatorController {
 					arithmetic_operation();
 				}
 				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
-					// pasamos el num a double y cogemos el texto
+					// Lasamos el num a double y cogemos el texto
 					num = Double.parseDouble(calcu.lblResult.getText());
 				}
 				calculation = 4;
