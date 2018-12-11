@@ -5,11 +5,16 @@ import java.math.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Model.usuario;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import Utils.FrameDragListener;
 import View.CalculatorView;
@@ -17,7 +22,6 @@ import View.CalculatorView;
 public class CalculatorController {
 
 	CalculatorView calcu = new CalculatorView();
-	
 	
 	double num,ans;
 	int calculation;
@@ -29,8 +33,10 @@ public class CalculatorController {
 	//sin tener que borrar con el boton C,CE,<-
 	boolean checkenter = false;
 	
-	List<String> results = new ArrayList<String>();
+	//Esta variable la usare para cuando vaya a usar el boton historial crear un bucle de llamada respuesta responsivo
+	int x = 0;
 	
+	ArrayList<String> logs;
 	
 	public void updatetxt(String signo) {
 		
@@ -107,14 +113,15 @@ public class CalculatorController {
 		calcu.setVisible(true);
 		
 		//La funcion donde se crean todos los componentes ( a mano ).
-		calcu.standarCalcuPaint();
+		calcu.createButtons();
+		calcu.paintButtons(true);
 		
 		//Aqui creamos un objeto apartir de la clase que he creado y le ponemos como parametro el JFrame.
 		//Esta clase la he puesto en Utils <<<-- 
 		FrameDragListener frameDragListener = new FrameDragListener(calcu);
         calcu.addMouseListener(frameDragListener);
         calcu.addMouseMotionListener(frameDragListener);
-		
+       
         
         //Aqui un action listener para volver atras
     	calcu.backBtn.addActionListener(new ActionListener() {
@@ -530,15 +537,24 @@ public class CalculatorController {
 		calcu.btnEquals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//Si el resultado es diferente a ""
 				if (!calcu.lblResult.getText().equals("")) {
+					//recogemos y almacenamos en la variable local lastNum el numero
 					String lastNum = calcu.lblResult.getText();
-					if (!calcu.lblResult.getText().equals("."))
+					
+					//si es diferente a "."
+					if (!calcu.lblResult.getText().equals(".")) 
+					{
+						//funcion aritmetica
 						arithmetic_operation();
-					calcu.lblResultOld
-							.setText("(" + calcu.lblResultOld.getText() + lastNum + ") = " + calcu.lblResult.getText());
-					//Aqui añado 
-					results.add(calcu.lblResultOld.getText());
+						//ponemos el texto
+						calcu.lblResultOld.setText("(" + calcu.lblResultOld.getText() + lastNum + ") = " + calcu.lblResult.getText());
+					}
+					
+					//llamo a la funcion getUsername
 					String Username = usuario.getUsername();
+					
+					//creamos variable local para hacer un check del username y añadir el log
 					int x = usuario.checkUserForAddLog(Username);
 					if (x == 1) {
 						usuario.addLog(Username, calcu.lblResultOld.getText());
@@ -566,16 +582,49 @@ public class CalculatorController {
 			}
 		});
 		
-		calcu.btnNewButton.addActionListener(new ActionListener() {
+		calcu.btnHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int x = 0; x < results.size() ; x++) {
-					System.out.println(results.get(x).toString());
+				if(x==0) 
+				{
+					calcu.paintButtons(false);
+					x++;
+					updateLogs();
+				} else {
+					calcu.paintButtons(true);
+					x--;
+					//borramos la arrayList para que no se muestre duplicada
+					logs.clear();
+					calcu.list.removeAll();
 				}
+
+			}
+		});
+		calcu.btnDeleteALL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Nos aseguramos que el usuario sabe lo que hace informandole.
+				if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
+				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					int x = usuario.deleteAllLogs(usuario.getUsername());
+					if(x==1) {
+						JOptionPane.showMessageDialog(null, "Info", "Successfully deleting all Logs", JOptionPane.INFORMATION_MESSAGE);
+					}
+				} else {
+				    // no option
+				}
+				
+
 			}
 		});
         
 	}
-	
+	void updateLogs() 
+	{
+		logs = usuario.showLog(usuario.getUsername());
+		for(int x = 0; x <logs.size() ; x++) {
+			calcu.list.add(logs.get(x));
+		}
+	}
 	//Esta funcion sera para poner el texto más pequeño dependiendo de la longitud del texto, tendra un maximo de 16.
 	void updateSizeTxt() {
 		int longitud = calcu.lblResult.getText().length();

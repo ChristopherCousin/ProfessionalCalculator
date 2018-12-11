@@ -2,12 +2,14 @@ package Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
+import Controller.CalculatorController;
 import Utils.DataConnection;
 
 public class usuario {
@@ -17,7 +19,6 @@ public class usuario {
 	private static String Surnames;
 	private static String email;
 	private static String password;
-	
 	usuario(){
 		
 		
@@ -209,5 +210,74 @@ public class usuario {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+	}
+	
+	public static ArrayList<String> showLog(String username)
+	{
+		ArrayList<String> log = new ArrayList<String>();
+		DataConnection.connect();
+		PreparedStatement cn;
+		
+		//Esta variable sera para comprobar si existe o no
+		int result = 0;
+		
+		
+		String vSQL = "SELECT Log FROM `log` WHERE Username = '" + username + "'";
+		System.out.println(vSQL);
+				 try {
+					cn = (PreparedStatement) DataConnection.con.prepareStatement(vSQL, PreparedStatement.RETURN_GENERATED_KEYS);
+					
+					 ResultSet rs = cn.executeQuery(vSQL);
+					 //System.out.println(rs.getString("Log"));
+					 while(rs.next()) {
+						 log.add(rs.getString("Log"));
+						 
+					 }
+					
+				} catch (SQLException e1) {
+					
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					//Aqui ha dado un error y devolvemos 2
+					result = 2;
+				}
+				 return log;
+	}
+	
+	public static int deleteAllLogs(String username) 
+	{
+		
+		DataConnection.connect();
+		PreparedStatement cn;
+		
+		//Esta variable sera para comprobar si existe o no
+		int result = 0;
+		
+		
+		String vSQL = "DELETE FROM `log` WHERE Username = '" + username + "'";
+		System.out.println(vSQL);
+				 try {
+					cn = (PreparedStatement) DataConnection.con.prepareStatement(vSQL, PreparedStatement.RETURN_GENERATED_KEYS);
+					
+					 ResultSet rs = cn.executeQuery(vSQL);
+					 
+					 //si devuelve true con el metodo ( next ) significa que ha encontrado algo
+					 if (rs.next())
+					 {
+					 //ponemos la variable result en 1
+					 result = 1;
+					 } else {
+						 //ponemos la variable en 0 para decir que no hemos encontrado usuario.
+						 result = 0;
+					 }
+					
+				} catch (SQLException e1) {
+					
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					//Aqui ha dado un error y devolvemos 2
+					result = 2;
+				}
+				return result;
 	}
 }
