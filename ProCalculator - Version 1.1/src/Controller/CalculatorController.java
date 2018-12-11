@@ -599,8 +599,8 @@ public class CalculatorController {
 					int x = usuario.deleteAllLogs(usuario.getUsername());
 					if(x==1) {
 						JOptionPane.showMessageDialog(null, "Successfully deleting all Logs", "Succesfully", JOptionPane.INFORMATION_MESSAGE);
-						updateLogs();
-						calcu.repaint();
+						clearLogs();
+						
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Error", "There's a problem in DataBase manipulation check usuario class.", JOptionPane.INFORMATION_MESSAGE);

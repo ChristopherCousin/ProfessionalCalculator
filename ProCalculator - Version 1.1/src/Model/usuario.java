@@ -271,4 +271,32 @@ public class usuario {
 				}
 				return result;
 	}
+	
+	public static int deleteSelectedLog(String username, String Log) 
+	{
+		
+		DataConnection.connect();
+		PreparedStatement cn;
+		
+		//Esta variable sera para comprobar si existe o no
+		int result = 0;
+		
+		
+		String vSQL = "DELETE FROM `log` WHERE Username = '" + username + "'";
+		System.out.println(vSQL);
+				 try {
+					cn = (PreparedStatement) DataConnection.con.prepareStatement(vSQL, PreparedStatement.RETURN_GENERATED_KEYS);
+					
+					 int rs = cn.executeUpdate(vSQL);
+					 result = 1;
+					
+				} catch (SQLException e1) {
+					
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					//Aqui ha dado un error y devolvemos 2
+					result = 2;
+				}
+				return result;
+	}
 }
