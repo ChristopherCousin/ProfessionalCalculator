@@ -23,6 +23,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import java.awt.List;
 import java.awt.Button;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 
 public class CalculatorView extends JFrame {
 
@@ -95,6 +98,16 @@ public class CalculatorView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 439, 21);
+		contentPane.add(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnFile.add(mntmExit);
 		
 	}
 	public void paintButtons(boolean Paint) 
@@ -344,7 +357,7 @@ public class CalculatorView extends JFrame {
 		lblResult.setBounds(0, 84, 440, 85);
 
 		
-		lblEstandar = new JLabel("Est\u00E1ndar");
+		lblEstandar = new JLabel("F Mode");
 		lblEstandar.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		lblEstandar.setBounds(181, 11, 84, 28);
 
