@@ -68,6 +68,7 @@ public class CalculatorView extends JFrame {
 	public Button btnDeleteSelected;
 	public Button btnDeleteALL;
 	public JMenuItem mntmNumeroPi;
+	public JMenuItem mntmBack;
 	public JMenuItem mntmExit;
 	public JMenu mnFile;
 	public JMenuBar menuBar;
@@ -76,6 +77,12 @@ public class CalculatorView extends JFrame {
 	public JButton btnSumarMemoria;
 	public JButton btnMr;
 	public JButton btnMc;
+	private JButton btnMod;
+	private JButton btnTan;
+	private JButton btnCos;
+	private JButton btnSin;
+	private JButton btnExp;
+	private JButton btnLog;
 	
 	/**
 	 * Launch the application.
@@ -97,22 +104,25 @@ public class CalculatorView extends JFrame {
 	 * Create the frame.
 	 */
 	
-	public CalculatorView() {
+	public CalculatorView() 
+	{
 		setResizable(false);
 		setMaximumSize(new Dimension(465, 595));
 		setTitle("Calculator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 447, 610);
+		setBounds(100, 100, 446, 610);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
 	}
-	public void paintButtons(boolean Paint) 
+	public void paintStandarButtons(boolean Paint) 
 	{
 		if(Paint) 
 		{
+			lblResult.setLocation(-1, 100);
+			btnHistorial.setLocation(385, 23);
+			setBounds(100, 100, 446, 610);
 			//Borramos al lista del historial
 			contentPane.remove(list);
 			contentPane.remove(lblHistory);
@@ -153,10 +163,12 @@ public class CalculatorView extends JFrame {
 			contentPane.add(btnSumar);
 			contentPane.add(btnEquals);
 			contentPane.add(btn6);
+			mnFile.add(mntmBack);
 			mnFile.add(mntmNumeroPi);
 			mnFile.add(mntmExit);
 			contentPane.add(menuBar);
 			menuBar.add(mnFile);
+			
 			contentPane.repaint();
 		} else {
 			contentPane.remove(btnPi);
@@ -188,6 +200,110 @@ public class CalculatorView extends JFrame {
 			contentPane.remove(btnRestarMemoria);
 			contentPane.remove(btnSumarMemoria);
 			contentPane.remove(btnMr);
+			
+			contentPane.repaint();
+			
+		}
+	}
+	public void paintCientificButtons(boolean Paint) 
+	{
+		if(Paint) 
+		{
+			lblResult.setLocation(115, 100);
+			btnHistorial.setLocation(505, 23);
+			setBounds(100, 100, 558, 610);
+			contentPane.add(btnMc);
+			contentPane.add(btnMS);
+			contentPane.add(btnRestarMemoria);
+			contentPane.add(btnSumarMemoria);
+			contentPane.add(btnMr);
+			contentPane.add(btnPi);
+			contentPane.add(btn1);
+			contentPane.add(btn4);
+			contentPane.add(btn0);
+			contentPane.add(btn2);
+			contentPane.add(btn5);
+			contentPane.add(btnComa);
+			contentPane.add(btn3);
+			contentPane.add(lblResultOld);
+			contentPane.add(backBtn);
+			contentPane.add(btnHistorial);
+			contentPane.add(lblEstandar);
+			contentPane.add(lblResult);
+			contentPane.add(btnDividir);
+			contentPane.add(btnBackSpace);
+			contentPane.add(btnC);
+			contentPane.add(btnCe);
+			contentPane.add(btnRaizCuadrada);
+			contentPane.add(btnSquared);
+			contentPane.add(btnDivisorbyZero);
+			contentPane.add(btnPorcentaje);
+			contentPane.add(btn8);
+			contentPane.add(btn9);
+			contentPane.add(btnMultiplicar);
+			contentPane.add(btn7);
+			contentPane.add(btnResta);
+			contentPane.add(btnSumar);
+			contentPane.add(btnEquals);
+			contentPane.add(btn6);
+			mnFile.add(mntmBack);
+			mnFile.add(mntmNumeroPi);
+			mnFile.add(mntmExit);
+			contentPane.add(menuBar);
+			menuBar.add(mnFile);
+			contentPane.add(btnExp);
+			contentPane.add(btnLog);
+			contentPane.add(btnMod);
+			contentPane.add(btnTan);
+			contentPane.add(btnCos);
+			contentPane.add(btnSin);
+			
+			contentPane.repaint();
+		} else {
+			contentPane.remove(btnPi);
+			contentPane.remove(btn1);
+			contentPane.remove(btn4);
+			contentPane.remove(btn0);
+			contentPane.remove(btn2);
+			contentPane.remove(btn5);
+			contentPane.remove(btnComa);
+			contentPane.remove(btn3);
+			contentPane.remove(btnDividir);
+			contentPane.remove(btnBackSpace);
+			contentPane.remove(btnC);
+			contentPane.remove(btnCe);
+			contentPane.remove(btnRaizCuadrada);
+			contentPane.remove(btnSquared);
+			contentPane.remove(btnDivisorbyZero);
+			contentPane.remove(btnPorcentaje);
+			contentPane.remove(btn8);
+			contentPane.remove(btn9);
+			contentPane.remove(btnMultiplicar);
+			contentPane.remove(btn7);
+			contentPane.remove(btnResta);
+			contentPane.remove(btnSumar);
+			contentPane.remove(btnEquals);
+			contentPane.remove(btn6);
+			contentPane.remove(btnMc);
+			contentPane.remove(btnMS);
+			contentPane.remove(btnRestarMemoria);
+			contentPane.remove(btnSumarMemoria);
+			contentPane.remove(btnMr);
+			contentPane.remove(btnExp);
+			contentPane.remove(btnLog);
+			contentPane.remove(btnMod);
+			contentPane.remove(btnTan);
+			contentPane.remove(btnCos);
+			contentPane.remove(btnSin);
+			
+			contentPane.repaint();
+			
+		}
+	}
+	public void paintHistory(boolean Paint) 
+	{
+		if(Paint) 
+		{
 			//Aqui añadimos la lista!
 			contentPane.add(list);
 			contentPane.add(lblHistory);
@@ -195,11 +311,59 @@ public class CalculatorView extends JFrame {
 			contentPane.add(btnDeleteALL);
 			
 			contentPane.repaint();
+		} else {
+			//Borramos al lista del historial
+			contentPane.remove(list);
+			contentPane.remove(lblHistory);
+			contentPane.remove(btnDeleteSelected);
+			contentPane.remove(btnDeleteALL);
+			
+			contentPane.repaint();
 			
 		}
 	}
 	
+	
+	
 	public void createButtons() {
+		
+		btnMod = new JButton("Mod");
+		btnMod.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnMod.setBackground(SystemColor.menu);
+		btnMod.setBounds(441, 395, 110, 62);
+		contentPane.add(btnMod);
+		
+		btnTan = new JButton("Tan");
+		btnTan.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnTan.setBackground(SystemColor.menu);
+		btnTan.setBounds(441, 333, 110, 62);
+		contentPane.add(btnTan);
+		
+		btnCos = new JButton("Cos");
+		btnCos.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnCos.setBackground(SystemColor.menu);
+		btnCos.setBounds(441, 271, 110, 62);
+		contentPane.add(btnCos);
+		
+		btnSin = new JButton("Sin");
+		btnSin.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnSin.setBackground(SystemColor.menu);
+		btnSin.setBounds(441, 209, 110, 62);
+		contentPane.add(btnSin);
+		
+		btnExp = new JButton("Exp");
+		btnExp.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnExp.setBackground(SystemColor.menu);
+		btnExp.setBounds(441, 457, 110, 62);
+		contentPane.add(btnExp);
+		
+		btnLog = new JButton("Log");
+		btnLog.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnLog.setBackground(SystemColor.menu);
+		btnLog.setBounds(441, 519, 110, 62);
+		contentPane.add(btnLog);
+		contentPane.repaint();
+		
 		
 		btnMS = new JButton("MS");
 		btnMS.setBounds(355, 181, 76, 23);
@@ -225,6 +389,7 @@ public class CalculatorView extends JFrame {
 		menuBar.setBounds(0, 0, 439, 21);
 		
 		mnFile = new JMenu("File");
+		mntmBack = new JMenuItem("Back");
 		mntmNumeroPi = new JMenuItem("Numero PI");
 		mntmExit = new JMenuItem("Exit");
 		
@@ -395,9 +560,9 @@ public class CalculatorView extends JFrame {
 		lblResult.setBounds(-1, 100, 440, 85);
 
 		
-		lblEstandar = new JLabel("F Mode");
+		lblEstandar = new JLabel("Estándar");
 		lblEstandar.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		lblEstandar.setBounds(181, 23, 84, 28);
+		lblEstandar.setBounds(65, 23, 120, 28);
 
 		
 		btnHistorial = new JButton("");
@@ -406,7 +571,7 @@ public class CalculatorView extends JFrame {
 
 		
 		backBtn = new JButton("");
-		backBtn.setIcon(new ImageIcon(CalculatorView.class.getResource("/resources/back.png")));
+		backBtn.setIcon(new ImageIcon(CalculatorView.class.getResource("/resources/change.png")));
 		backBtn.setBounds(10, 23, 45, 30);
 
 		
@@ -415,6 +580,5 @@ public class CalculatorView extends JFrame {
 		lblResultOld.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblResultOld.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblResultOld.setBounds(0, 59, 440, 28);
-
 	}
 }

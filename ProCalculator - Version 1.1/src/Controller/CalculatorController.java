@@ -30,6 +30,10 @@ public class CalculatorController {
 	
 	//Esta variable la usare para cuando vaya a usar el boton historial crear un bucle de llamada respuesta responsivo
 	int x = 0;
+	int y = 0;
+	
+	
+	String calculatorMode = "Estandar";
 	
 	ArrayList<String> logs;
 	
@@ -112,7 +116,7 @@ public class CalculatorController {
 		
 		//La funcion donde se crean todos los componentes ( a mano ).
 		calcu.createButtons();
-		calcu.paintButtons(true);
+		calcu.paintStandarButtons(true);
 		
 		//Aqui creamos un objeto apartir de la clase que he creado y le ponemos como parametro el JFrame.
 		//Esta clase la he puesto en Utils <<<-- 
@@ -131,6 +135,28 @@ public class CalculatorController {
         
         //Aqui un action listener para volver atras
     	calcu.backBtn.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent arg0) {
+				if(x==0) 
+				{
+					calcu.paintHistory(false);
+					calcu.paintStandarButtons(false);
+					calcu.paintCientificButtons(true);
+					calculatorMode = "Cientifica";
+					calcu.lblEstandar.setText("Científica");
+					x++;
+					updateLogs();
+				} else {
+					calcu.paintCientificButtons(false);
+					calcu.paintStandarButtons(true);
+					calculatorMode = "Estandar";
+					calcu.lblEstandar.setText("Estándar");
+					x--;
+					//borramos la arrayList para que no se muestre duplicada y la lista.
+					clearLogs();
+				}
+    		}
+    	});
+    	calcu.mntmBack.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent arg0) {
     			//llamamos al controlador main que se encarga de todo del mainView
     			mainController main = new mainController();
@@ -652,14 +678,34 @@ public class CalculatorController {
 		});
 		calcu.btnHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(x==0) 
+				if(y==0 && calculatorMode == "Estandar") 
 				{
-					calcu.paintButtons(false);
-					x++;
+					calcu.paintStandarButtons(false);
+					calcu.paintHistory(true);
+					y++;
 					updateLogs();
-				} else {
-					calcu.paintButtons(true);
-					x--;
+				} 
+				else if (y==0 && calculatorMode == "Cientifica")
+				{
+					calcu.paintCientificButtons(false);
+					calcu.paintHistory(true);
+					y++;
+					//borramos la arrayList para que no se muestre duplicada y la lista.
+					clearLogs();
+				}
+				else if (y==1 && calculatorMode == "Estandar")
+				{
+					calcu.paintStandarButtons(true);
+					calcu.paintHistory(false);
+					y--;
+					//borramos la arrayList para que no se muestre duplicada y la lista.
+					clearLogs();
+				}
+				else if (y==1 && calculatorMode == "Cientifica")
+				{
+					calcu.paintCientificButtons(true);
+					calcu.paintHistory(false);
+					y--;
 					//borramos la arrayList para que no se muestre duplicada y la lista.
 					clearLogs();
 				}
