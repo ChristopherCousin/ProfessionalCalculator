@@ -581,6 +581,22 @@ public class CalculatorController {
 				calcu.lblResult.setText(Double.toString(num2));
 			}
 		});
+		calcu.mntmNumeroPi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Aqui ponemos el numero pi
+				calcu.lblResultOld.setText("");
+				num = 0;
+				calcu.lblResult.setText(Double.toString(Math.PI));
+				checkenter = true;
+				
+			}
+		});
+		calcu.mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calcu.dispose();
+				
+			}
+		});
 		
 		calcu.btnHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
