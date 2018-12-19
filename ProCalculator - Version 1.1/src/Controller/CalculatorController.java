@@ -59,6 +59,9 @@ public class CalculatorController {
 			break;
 		//restamos
 		case 2:
+			if(calcu.lblResult.getText().startsWith("-")) {
+				num = Double.parseDouble(calcu.lblResult.getText());
+			}
 			ans = num - Double.parseDouble(calcu.lblResult.getText());
 			calcu.lblResult.setText(Double.toString(ans));
 			break;
@@ -84,7 +87,6 @@ public class CalculatorController {
 			break;
 		//La raiz cuadrada
 		case 7:
-			
 			//Aqui llamamos a la funcion sqrt de math que nos da la raizcuadrada
 			ans = Math.sqrt(num);
 			calcu.lblResult.setText(Double.toString(ans));
@@ -95,6 +97,7 @@ public class CalculatorController {
 			ans = (num * Double.parseDouble(calcu.lblResult.getText()) / 100);
 			calcu.lblResult.setText(Double.toString(ans));
 			break;
+			//negate
 		}
 	}
 	CalculatorController() {
@@ -558,6 +561,7 @@ public class CalculatorController {
 								"Mirar clase CalculatorController linea 474, fallo de conexion base de datos ?");
 					}
 					calcu.lblResultOld.setText("");
+					calculation = 0;
 					num = 0;
 					//definicion donde creo la variable (arriba)
 					checkenter = true;
@@ -568,10 +572,13 @@ public class CalculatorController {
 		calcu.btnPi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Aqui ponemos el numero pi
-				calcu.lblResultOld.setText("");
+				/*calcu.lblResultOld.setText("");
 				num = 0;
 				calcu.lblResult.setText(Double.toString(Math.PI));
 				checkenter = true;
+				*/
+				double num2 = Double.parseDouble(calcu.lblResult.getText())* -1;
+				calcu.lblResult.setText(Double.toString(num2));
 			}
 		});
 		
@@ -598,7 +605,8 @@ public class CalculatorController {
 				if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
 				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					int x = usuario.deleteAllLogs(usuario.getUsername());
-					if(x==1) {
+					if(x==1) 
+					{
 						JOptionPane.showMessageDialog(null, "Successfully deleting all Logs", "Succesfully", JOptionPane.INFORMATION_MESSAGE);
 						clearLogs();
 						
@@ -617,13 +625,14 @@ public class CalculatorController {
 				if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
 				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					int x = usuario.deleteSelectedLog(usuario.getUsername(), calcu.list.getSelectedItem().toString());
-					if(x==1) {
+					if(x==1) 
+					{
 						JOptionPane.showMessageDialog(null, "Successfully deleting all Logs", "Succesfully", JOptionPane.INFORMATION_MESSAGE);
 						clearLogs();
 						updateLogs();
-						
 					}
-				} else {
+				} else 
+				{
 					JOptionPane.showMessageDialog(null, "Error", "There's a problem in DataBase manipulation check usuario class.", JOptionPane.INFORMATION_MESSAGE);
 				}
 				

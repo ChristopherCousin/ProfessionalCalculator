@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JRadioButton;
 
 public class signUpView extends JFrame {
 
@@ -23,8 +24,8 @@ public class signUpView extends JFrame {
 	public JTextField txtName;
 	public JTextField txtSurnames;
 	public JTextField txtEmail;
-	public JTextField txtPassword;
-	public JTextField txtPassword_1;
+	public JPasswordField txtPassword;
+	public JPasswordField txtPassword_1;
 	public JButton btnBack;
 	public JButton btnSignUp;
 
@@ -51,7 +52,7 @@ public class signUpView extends JFrame {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(signUpView.class.getResource("/resources/SignUp.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 452, 275);
+		setBounds(100, 100, 452, 242);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,7 +72,7 @@ public class signUpView extends JFrame {
 		
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Modern No. 20", Font.PLAIN, 15));
-		txtEmail.setText("E-mail...");
+		txtEmail.setText("E-mail@gmail.com...");
 		contentPane.add(txtEmail, "cell 0 2,growx");
 		txtEmail.setColumns(10);
 		
@@ -83,14 +84,14 @@ public class signUpView extends JFrame {
 		
 		txtPassword_1 = new JPasswordField();
 		txtPassword_1.setFont(new Font("Modern No. 20", Font.PLAIN, 15));
-		txtPassword_1.setText("Password...");
+		txtPassword_1.setText("Confirm Password..");
 		contentPane.add(txtPassword_1, "cell 0 4,growx");
 		txtPassword_1.setColumns(10);
 		
 		btnSignUp = new JButton("Sign Up");
 		btnSignUp.setIcon(new ImageIcon(signUpView.class.getResource("/resources/SignUp.png")));
 		btnSignUp.setFont(new Font("Modern No. 20", Font.PLAIN, 23));
-		contentPane.add(btnSignUp, "flowx,cell 0 5,alignx center,aligny center");
+		contentPane.add(btnSignUp, "cell 0 5,alignx center,aligny center");
 		
 		btnBack = new JButton("Back");
 

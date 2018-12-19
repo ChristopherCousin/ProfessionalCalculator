@@ -32,6 +32,10 @@ public class signUpController {
 		signUp.setLocationRelativeTo(null);
 		signUp.setAlwaysOnTop(true);
 		
+		//ponemos los textos en *
+		signUp.txtPassword.setEchoChar((char)0);
+		signUp.txtPassword_1.setEchoChar((char)0);
+		
 		//Creamos los listeners.
 		createListeners();
 		
@@ -55,6 +59,8 @@ public class signUpController {
 				if(usuario.checkUserExists(signUp.txtName.getText()) != 1) {
 					//comprobamos que los campos esten bien.
 					if(checkFields == 0) usuario.createUser(signUp.txtName.getText(), signUp.txtSurnames.getText(),signUp.txtEmail.getText(), signUp.txtPassword.getText());
+					JOptionPane.showMessageDialog(signUp, "El usuario se ha creado correctamente", "Valid", JOptionPane.INFORMATION_MESSAGE);
+					cleanFields();
 					checkFields = 0;
 				} else {
 					JOptionPane.showMessageDialog(signUp, "El Name que usas ya esta en uso!", "Alert", JOptionPane.ERROR_MESSAGE);
@@ -117,6 +123,7 @@ public class signUpController {
 			public void mouseClicked(MouseEvent e) {
 				//Ponemos el texto oculto con "*" y vacio.
 				signUp.txtPassword.setText("");
+				signUp.txtPassword.setEchoChar('*');
 			}
 		});
 		// Key Listener para que una vez el usuario haga Presione una tecla el texto se vacie
@@ -128,6 +135,7 @@ public class signUpController {
 				
 				if(signUp.txtName.getText().toString().equals(signUp.txtName.getText().toString()) && txtPasswordPlaceHolder) {
 					signUp.txtPassword.setText("");
+					signUp.txtPassword.setEchoChar('*');
 					txtPasswordPlaceHolder = false;
 				}
 			}
@@ -137,6 +145,7 @@ public class signUpController {
 			public void mouseClicked(MouseEvent e) {
 				//Ponemos el texto oculto con "*" y vacio.
 				signUp.txtPassword_1.setText("");
+				signUp.txtPassword_1.setEchoChar('*');
 			}
 		});
 		// Key Listener para que una vez el usuario haga Presione una tecla el texto se vacie
@@ -148,6 +157,7 @@ public class signUpController {
 				
 				if(signUp.txtName.getText().toString().equals(signUp.txtName.getText().toString()) && txtPasswordPlaceHolder_1) {
 					signUp.txtPassword_1.setText("");
+					signUp.txtPassword_1.setEchoChar('*');
 					txtPasswordPlaceHolder_1 = false;
 				}
 			}
@@ -161,6 +171,7 @@ public class signUpController {
 		//Hacemos unas comprobaciones antes de dejar que se registre el usuario.
 		if (signUp.txtName.getText().equals("")) 		{ JOptionPane.showMessageDialog(signUp, "No puedes dejar el Nombre en blanco", "Alert", JOptionPane.ERROR_MESSAGE); 	 checkFields++; }
 		if (signUp.txtEmail.getText().equals("")) 		{ JOptionPane.showMessageDialog(signUp, "No puedes dejar el Email en blanco", "Alert", JOptionPane.ERROR_MESSAGE);		 checkFields++; }
+		if (!signUp.txtEmail.getText().contains("@")) 		{ JOptionPane.showMessageDialog(signUp, "E-mail no valido.", "Alert", JOptionPane.ERROR_MESSAGE);		 checkFields++; }
 		if (signUp.txtPassword.getText().equals(""))    { JOptionPane.showMessageDialog(signUp, "No puedes dejar el Password en blanco", "Alert", JOptionPane.ERROR_MESSAGE);	 checkFields++; }
 		if (signUp.txtSurnames.getText().equals(""))    { JOptionPane.showMessageDialog(signUp, "No puedes dejar el Apellido en blanco", "Alert", JOptionPane.ERROR_MESSAGE); 	 checkFields++; }
 		if (signUp.txtPassword_1.getText().equals("")) 	{ JOptionPane.showMessageDialog(signUp, "No puedes dejar el Password2 en blanco", "Alert", JOptionPane.ERROR_MESSAGE); 	 checkFields++; }
@@ -169,6 +180,14 @@ public class signUpController {
 		String password = new String(signUp.txtPassword.getText()); 
 		String password1 = new String(signUp.txtPassword_1.getText());
 		if (!password.equals(password1))	{ JOptionPane.showMessageDialog(signUp, "El password no es el mismo!", "Alert", JOptionPane.ERROR_MESSAGE); checkFields++; }
+	}
+	
+	void cleanFields() {
+		signUp.txtName.setText("");
+		signUp.txtEmail.setText("");
+		signUp.txtPassword.setText("");
+		signUp.txtPassword_1.setText("");
+		signUp.txtSurnames.setText("");
 	}
 	
 }

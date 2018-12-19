@@ -19,6 +19,11 @@ public class usuario {
 	private static String Surnames;
 	private static String email;
 	private static String password;
+	
+	//los remembers txts y boolean
+	public static String usernameRemember = "";
+	public static String passwordRemember = "";
+	public static boolean radioRemember = false;
 	usuario(){
 		
 		

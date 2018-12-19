@@ -16,15 +16,22 @@ import View.mainView;
 public class mainController {
 
 	mainView main = new mainView();
-	
 	mainController() {
-		//Ponemos visible el mainView y la localizacion al centro
+		// Ponemos visible el mainView y la localizacion al centro
 		main.setLocationRelativeTo(null);
 		main.setVisible(true);
-		
-		//Aqui ponemos el password en caracteres para que el texto
+		main.txtPassword.setEchoChar((char)0);
+		// Aqui ponemos el password en caracteres para que el texto
 		// establecido sea visible.
 		crearListeneres();
+		
+		if(usuario.usernameRemember != "" && usuario.passwordRemember != "") {
+			main.txtUsername.setText(usuario.usernameRemember);
+			main.txtPassword.setText(usuario.passwordRemember);
+		}
+		if(usuario.radioRemember) {
+			main.rdbtnNewRadioButton.setSelected(true);
+		}
 	}
 	
 	void crearListeneres(){
@@ -51,6 +58,7 @@ public class mainController {
 			public void mouseClicked(MouseEvent e) {
 				//Ponemos el texto oculto con "*" y vacio.
 				main.txtPassword.setText("");
+				main.txtPassword.setEchoChar('*');
 			}
 		});
 		// Key Listener para que una vez el usuario haga Presione una tecla el texto se vacie
@@ -62,6 +70,7 @@ public class mainController {
 				
 				if(main.txtUsername.getText().toString().equals(main.txtUsername.getText().toString()) && main.txtPasswordPlaceHolder) {
 					main.txtPassword.setText("");
+					main.txtPassword.setEchoChar('*');
 					main.txtPasswordPlaceHolder = false;
 				}
 			}
@@ -84,12 +93,21 @@ public class mainController {
 				// Recojo el valor que me manda la funcion loginUser para saber si se ha encontrado el usuario con estos parametros
 				int x = usuario.loginUser(main.txtUsername.getText(), main.txtPassword.getText());
 				
+				//Si el radio button esta activado que almacene el usuario.
+				if(main.rdbtnNewRadioButton.isSelected()) 
+				{
+					usuario.usernameRemember = main.txtUsername.getText();
+					usuario.passwordRemember = main.txtPassword.getText();
+					usuario.radioRemember = true;
+				} else {
+					usuario.radioRemember = false;
+					usuario.usernameRemember = "";
+					usuario.passwordRemember = "";
+				}
 				
 				//si se encuentra devuelve 1
 				if(x == 1) 
 				{
-					//Enseñamos un JOptionPane de que el usuario se ha conectado correctamente
-					JOptionPane.showMessageDialog(null, "Conectado", "Alert", JOptionPane.INFORMATION_MESSAGE);
 					CalculatorController calcu = new CalculatorController();
 					
 					usuario.setUsername(main.txtUsername.getText());

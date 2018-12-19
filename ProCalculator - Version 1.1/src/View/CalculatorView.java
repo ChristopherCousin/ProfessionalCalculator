@@ -90,15 +90,11 @@ public class CalculatorView extends JFrame {
 		setMaximumSize(new Dimension(465, 595));
 		setTitle("Calculator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 440, 552);
+		setBounds(100, 100, 445, 580);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		//Aqui le ponemos la funcion setundecored para quitar la ventana por defecto
-		setUndecorated(true);
-		//Le ponemos opacidad a la ventana.
-		setOpacity(0.9f);
 		
 	}
 	public void paintButtons(boolean Paint) 
@@ -198,7 +194,7 @@ public class CalculatorView extends JFrame {
 		list = new List();
 		list.setBounds(10, 270, 420, 272);
 		
-		btnPi = new JButton("NumPI");
+		btnPi = new JButton("±");
 		btnPi.setBackground(SystemColor.menu);
 		btnPi.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		btnPi.setBounds(0, 490, 110, 62);

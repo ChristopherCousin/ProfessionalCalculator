@@ -27,17 +27,19 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
 
 public class mainView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public JTextField txtUsername;
-	public JTextField txtPassword;
+	public JPasswordField txtPassword;
 	public boolean txtPasswordPlaceHolder= true;
 	public JLabel lblWelcome;
 	public JButton btnSignUp;
 	public JButton btnLogin;
+	public JRadioButton rdbtnNewRadioButton;
 	
 	
 	public static void main(String[] args) {
@@ -60,38 +62,42 @@ public class mainView extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(395,318);
+		setSize(445,349);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		lblWelcome = new JLabel("Welcome");
-		lblWelcome.setBounds(11, 12, 358, 43);
+		lblWelcome.setBounds(38, 11, 358, 43);
 		
 		lblWelcome.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblWelcome);
 		txtUsername = new JTextField("Username...");
-		txtUsername.setBounds(11, 57, 358, 43);
+		txtUsername.setBounds(11, 57, 408, 43);
 		
 		txtUsername.setToolTipText("");
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
 		txtPassword = new JPasswordField(10);
 		txtPassword.setText("Password...");
-		txtPassword.setBounds(11, 98, 358, 43);
+		txtPassword.setBounds(11, 98, 408, 43);
 		
 		txtPassword.setColumns(10);
 		contentPane.add(txtPassword);
 		btnLogin = new JButton("Login");
-		btnLogin.setBounds(70, 152, 224, 57);
+		btnLogin.setBounds(102, 182, 235, 57);
 		btnLogin.setIcon(new ImageIcon(mainView.class.getResource("/resources/Login.png")));
 		btnLogin.setFont(new Font("Modern No. 20", Font.PLAIN, 20));
 		contentPane.add(btnLogin);
 		btnSignUp = new JButton("Sign UP");
-		btnSignUp.setBounds(70, 207, 224, 62);
+		btnSignUp.setBounds(102, 237, 235, 62);
 		btnSignUp.setIcon(new ImageIcon(mainView.class.getResource("/resources/SignUp.png")));
 		btnSignUp.setFont(new Font("Modern No. 20", Font.PLAIN, 20));
 		contentPane.add(btnSignUp);
+		
+		rdbtnNewRadioButton = new JRadioButton("Remember User?");
+		rdbtnNewRadioButton.setBounds(11, 146, 154, 29);
+		contentPane.add(rdbtnNewRadioButton);
 		setLocationRelativeTo(null);
 	}
 }
