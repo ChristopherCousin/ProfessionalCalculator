@@ -18,6 +18,9 @@ public class CalculatorController {
 	double num,ans;
 	int calculation;
 	
+	//string de la memoria
+	String memory = "";
+	
 	//esta booleana la usare para calcular cuando el usuario haya pulsado el boton y usarlo en algunas func
 	boolean checkBtn = false;
 	
@@ -116,7 +119,15 @@ public class CalculatorController {
 		FrameDragListener frameDragListener = new FrameDragListener(calcu);
         calcu.addMouseListener(frameDragListener);
         calcu.addMouseMotionListener(frameDragListener);
-       
+        
+    	//si la memoria esta vacio los botones  MC,MR no se podran usar.
+    	if(memory == "") {
+    		calcu.btnMc.setEnabled(false);
+    		calcu.btnMr.setEnabled(false);
+    	} else {
+    		calcu.btnMc.setEnabled(true);
+    		calcu.btnMr.setEnabled(true);
+    	}
         
         //Aqui un action listener para volver atras
     	calcu.backBtn.addActionListener(new ActionListener() {
@@ -571,12 +582,7 @@ public class CalculatorController {
 		
 		calcu.btnPi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Aqui ponemos el numero pi
-				/*calcu.lblResultOld.setText("");
-				num = 0;
-				calcu.lblResult.setText(Double.toString(Math.PI));
-				checkenter = true;
-				*/
+				//Aqui multiplicamos -1 para sacar el negativo del numero.
 				double num2 = Double.parseDouble(calcu.lblResult.getText())* -1;
 				calcu.lblResult.setText(Double.toString(num2));
 			}
@@ -592,12 +598,58 @@ public class CalculatorController {
 			}
 		});
 		calcu.mntmExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
+				//cerramos la app.
 				calcu.dispose();
+			}
+		});
+		
+		calcu.btnMS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				//almacenamos el numero en memoria.
+				memory = calcu.lblResult.getText();
+				calcu.btnMr.setEnabled(true);
+				calcu.btnMc.setEnabled(true);
 				
 			}
 		});
 		
+		calcu.btnRestarMemoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				//almacenamos el numero en memoria.
+				double operationrestarMemoria = Double.parseDouble(memory) - Double.parseDouble(calcu.lblResult.getText());
+				memory = Double.toString(operationrestarMemoria);
+				
+			}
+		});
+		calcu.btnSumarMemoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				//almacenamos el numero en memoria.
+				double operationrestarMemoria = Double.parseDouble(memory) + Double.parseDouble(calcu.lblResult.getText());
+				memory = Double.toString(operationrestarMemoria);
+				
+			}
+		});
+		calcu.btnMr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				calcu.lblResult.setText(memory);
+				
+			}
+		});
+		calcu.btnMc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				memory = "";
+				calcu.btnMr.setEnabled(false);
+				calcu.btnMc.setEnabled(false);
+				
+			}
+		});
 		calcu.btnHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(x==0) 

@@ -71,6 +71,11 @@ public class CalculatorView extends JFrame {
 	public JMenuItem mntmExit;
 	public JMenu mnFile;
 	public JMenuBar menuBar;
+	public JButton btnMS;
+	public JButton btnRestarMemoria;
+	public JButton btnSumarMemoria;
+	public JButton btnMr;
+	public JButton btnMc;
 	
 	/**
 	 * Launch the application.
@@ -102,10 +107,7 @@ public class CalculatorView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-	
-		
-		
+
 	}
 	public void paintButtons(boolean Paint) 
 	{
@@ -117,6 +119,11 @@ public class CalculatorView extends JFrame {
 			contentPane.remove(btnDeleteSelected);
 			contentPane.remove(btnDeleteALL);
 			
+			contentPane.add(btnMc);
+			contentPane.add(btnMS);
+			contentPane.add(btnRestarMemoria);
+			contentPane.add(btnSumarMemoria);
+			contentPane.add(btnMr);
 			contentPane.add(btnPi);
 			contentPane.add(btn1);
 			contentPane.add(btn4);
@@ -176,7 +183,11 @@ public class CalculatorView extends JFrame {
 			contentPane.remove(btnSumar);
 			contentPane.remove(btnEquals);
 			contentPane.remove(btn6);
-			
+			contentPane.remove(btnMc);
+			contentPane.remove(btnMS);
+			contentPane.remove(btnRestarMemoria);
+			contentPane.remove(btnSumarMemoria);
+			contentPane.remove(btnMr);
 			//Aqui añadimos la lista!
 			contentPane.add(list);
 			contentPane.add(lblHistory);
@@ -189,6 +200,26 @@ public class CalculatorView extends JFrame {
 	}
 	
 	public void createButtons() {
+		
+		btnMS = new JButton("MS");
+		btnMS.setBounds(355, 181, 76, 23);
+
+		
+		btnRestarMemoria = new JButton("M-");
+		btnRestarMemoria.setBounds(268, 181, 76, 23);
+
+		
+		btnSumarMemoria = new JButton("M+");
+		btnSumarMemoria.setBounds(182, 181, 76, 23);
+
+		
+		btnMr = new JButton("MR");
+		btnMr.setBounds(96, 181, 76, 23);
+
+		
+		btnMc = new JButton("MC");
+		btnMc.setBounds(10, 181, 76, 23);
+		
 		
 		menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 439, 21);
@@ -361,7 +392,7 @@ public class CalculatorView extends JFrame {
 		lblResult = new JLabel("0 ");
 		lblResult.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
 		lblResult.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblResult.setBounds(-1, 121, 440, 85);
+		lblResult.setBounds(-1, 100, 440, 85);
 
 		
 		lblEstandar = new JLabel("F Mode");
