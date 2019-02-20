@@ -52,7 +52,7 @@ public class signUpView extends JFrame {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(signUpView.class.getResource("/resources/SignUp.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 452, 242);
+		setBounds(100, 100, 452, 277);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
