@@ -66,9 +66,6 @@ public class CalculatorController {
 			break;
 		//restamos
 		case 2:
-			if(calcu.lblResult.getText().startsWith("-")) {
-				num = Double.parseDouble(calcu.lblResult.getText());
-			}
 			ans = num - Double.parseDouble(calcu.lblResult.getText());
 			calcu.lblResult.setText(Double.toString(ans));
 			break;

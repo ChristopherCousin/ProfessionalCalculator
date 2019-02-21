@@ -110,7 +110,7 @@ public class CalculatorView extends JFrame {
 		setMaximumSize(new Dimension(465, 595));
 		setTitle("Calculator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 446, 610);
+		setBounds(this.getX(), this.getY(), 446, 610);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -121,8 +121,9 @@ public class CalculatorView extends JFrame {
 		if(Paint) 
 		{
 			lblResult.setLocation(-1, 100);
+			lblResultOld.setLocation(0,90);
 			btnHistorial.setLocation(385, 23);
-			setBounds(100, 100, 446, 610);
+			setBounds(this.getX(), this.getY(), 446, 610);
 			//Borramos al lista del historial
 			contentPane.remove(list);
 			contentPane.remove(lblHistory);
@@ -209,9 +210,10 @@ public class CalculatorView extends JFrame {
 	{
 		if(Paint) 
 		{
-			lblResult.setLocation(115, 100);
+			lblResult.setLocation(110, 100);
+			lblResultOld.setLocation(110, 90);
 			btnHistorial.setLocation(505, 23);
-			setBounds(100, 100, 558, 610);
+			setBounds(this.getX(), this.getY(), 558, 610);
 			contentPane.add(btnMc);
 			contentPane.add(btnMS);
 			contentPane.add(btnRestarMemoria);
@@ -257,7 +259,6 @@ public class CalculatorView extends JFrame {
 			contentPane.add(btnTan);
 			contentPane.add(btnCos);
 			contentPane.add(btnSin);
-			
 			contentPane.repaint();
 		} else {
 			contentPane.remove(btnPi);
@@ -312,7 +313,7 @@ public class CalculatorView extends JFrame {
 			
 			contentPane.repaint();
 		} else {
-			//Borramos al lista del historial
+			//Borramos la lista del historial
 			contentPane.remove(list);
 			contentPane.remove(lblHistory);
 			contentPane.remove(btnDeleteSelected);
