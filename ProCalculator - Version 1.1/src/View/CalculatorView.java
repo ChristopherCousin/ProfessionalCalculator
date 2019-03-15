@@ -77,12 +77,12 @@ public class CalculatorView extends JFrame {
 	public JButton btnSumarMemoria;
 	public JButton btnMr;
 	public JButton btnMc;
-	private JButton btnMod;
-	private JButton btnTan;
-	private JButton btnCos;
-	private JButton btnSin;
-	private JButton btnExp;
-	private JButton btnLog;
+	public JButton btnMod;
+	public JButton btnTan;
+	public JButton btnCos;
+	public JButton btnSin;
+	public JButton btnExp;
+	public JButton btnLog;
 	
 	/**
 	 * Launch the application.

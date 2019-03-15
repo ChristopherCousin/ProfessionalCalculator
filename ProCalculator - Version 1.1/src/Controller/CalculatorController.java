@@ -102,6 +102,27 @@ public class CalculatorController {
 			calcu.lblResult.setText(Double.toString(ans));
 			break;
 			//negate
+		case 9:
+			ans = Math.toRadians(Double.parseDouble(calcu.lblResult.getText()));
+			calcu.lblResult.setText(Double.toString(ans));
+			break;
+		case 10:
+			ans = Math.toRadians(Double.parseDouble(calcu.lblResult.getText()));
+			ans = Math.tan(ans);
+			calcu.lblResult.setText(Double.toString(ans));
+			break;
+		case 11:
+			boolean isMod = ((Double.parseDouble(calcu.lblResult.getText()) % 2) == 0);
+			calcu.lblResult.setText(String.valueOf(isMod));
+			break;
+		case 12:
+			ans = Math.exp(Double.parseDouble(calcu.lblResult.getText()));
+			calcu.lblResult.setText(Double.toString(ans));
+			break;
+		case 13:
+			ans = Math.log(Double.parseDouble(calcu.lblResult.getText()));
+			calcu.lblResult.setText(Double.toString(ans));
+			break;
 		}
 	}
 	CalculatorController() {
@@ -673,9 +694,75 @@ public class CalculatorController {
 				
 			}
 		});
+		calcu.btnSin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
+					calculation = 9;
+					arithmetic_operation();
+				} else {
+					calcu.lblResultOld.setText("You must put a number for that!");
+				}
+			}
+		});
+		calcu.btnCos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
+					calculation = 9;
+					arithmetic_operation();
+				} else {
+					calcu.lblResultOld.setText("You must put a number for that!");
+				}
+			}
+		});
+		calcu.btnMod.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
+					calculation = 11;
+					arithmetic_operation();
+				} else {
+					calcu.lblResultOld.setText("You must put a number for that!");
+				}
+			}
+		});
+		calcu.btnTan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
+					calculation = 10;
+					arithmetic_operation();
+				} else {
+					calcu.lblResultOld.setText("You must put a number for that!");
+				}
+			}
+		});
+		calcu.btnExp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
+					calculation = 12;
+					arithmetic_operation();
+				} else {
+					calcu.lblResultOld.setText("You must put a number for that!");
+				}
+			}
+		});
+		calcu.btnLog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(!calcu.lblResult.getText().equals("0 ") && !calcu.lblResult.getText().equals("") && !calcu.lblResult.getText().equals(".")) {
+					calculation = 13;
+					arithmetic_operation();
+				} else {
+					calcu.lblResultOld.setText("You must put a number for that!");
+				}
+			}
+		});
 		calcu.btnHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(y==0 && calculatorMode == "Estandar") 
+				if(y==0 && calculatorMode == "Estandar")
 				{
 					calcu.paintStandarButtons(false);
 					calcu.paintHistory(true);
@@ -688,7 +775,7 @@ public class CalculatorController {
 					calcu.paintHistory(true);
 					y++;
 					//borramos la arrayList para que no se muestre duplicada y la lista.
-					clearLogs();
+					updateLogs();
 				}
 				else if (y==1 && calculatorMode == "Estandar")
 				{
